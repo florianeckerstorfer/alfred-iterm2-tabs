@@ -78,18 +78,20 @@ require_once 'tabs.php';</string>
 
 tell application "iTerm"
 	activate
-	set myterm to (current terminal)
-	tell myterm
-		repeat with mysession in sessions
-			tell mysession
-				set the_name to get name
-				if the_name contains theQuery then
-					select mysession
-                     return
-				end if
-			end tell
-		end repeat
-	end tell
+	repeat with myterm in terminals
+		tell myterm
+			repeat with mysession in sessions
+				tell mysession
+					set the_name to get name
+					if the_name contains theQuery then
+						activate mysession
+						select mysession
+	                     return
+					end if
+				end tell
+			end repeat
+		end tell
+	end repeat
 end tell</string>
 				<key>type</key>
 				<integer>6</integer>
