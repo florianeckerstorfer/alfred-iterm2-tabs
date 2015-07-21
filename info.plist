@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>ec.florian.aflred.iterm2-tabs</string>
+	<key>category</key>
+	<string>Productivity</string>
+	<key>connections</key>
+	<dict>
+		<key>177ADD6E-9880-45FB-B588-729EF3212792</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>DB642EEA-6D59-4A53-AE36-EF2AC7844788</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Florian Eckerstorfer</string>
+	<key>description</key>
+	<string>Navigate iTerm2 tabs</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>iTerm2 Tabs</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>100</integer>
+				<key>keyword</key>
+				<string>itt</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>Please Wait</string>
+				<key>script</key>
+				<string>$query = "{query}";
+require_once 'tabs.php';</string>
+				<key>title</key>
+				<string>Search open tabs in iTerm2</string>
+				<key>type</key>
+				<integer>1</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>177ADD6E-9880-45FB-B588-729EF3212792</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>68</integer>
+				<key>script</key>
+				<string>set theQuery to "{query}"
+
+tell application "iTerm"
+	activate
+	set myterm to (current terminal)
+	tell myterm
+		repeat with mysession in sessions
+			tell mysession
+				set the_name to get name
+				if the_name contains theQuery then
+					select mysession
+                     return
+				end if
+			end tell
+		end repeat
+	end tell
+end tell</string>
+				<key>type</key>
+				<integer>6</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>DB642EEA-6D59-4A53-AE36-EF2AC7844788</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string></string>
+	<key>uidata</key>
+	<dict>
+		<key>177ADD6E-9880-45FB-B588-729EF3212792</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+		<key>DB642EEA-6D59-4A53-AE36-EF2AC7844788</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+	</dict>
+	<key>webaddress</key>
+	<string>https://florian.ec</string>
+</dict>
+</plist>
