@@ -5,7 +5,7 @@
 	<key>bundleid</key>
 	<string>ec.florian.aflred.iterm2-tabs</string>
 	<key>category</key>
-	<string>Productivity</string>
+	<string>Tools</string>
 	<key>connections</key>
 	<dict>
 		<key>177ADD6E-9880-45FB-B588-729EF3212792</key>
@@ -78,17 +78,23 @@ require_once 'tabs.php';</string>
 
 tell application "iTerm"
 	activate
-	repeat with myterm in terminals
+	repeat with myterm in windows
 		tell myterm
+			repeat with mytab in tabs
+			tell mytab
 			repeat with mysession in sessions
 				tell mysession
 					set the_name to get name
+					log the_name
 					if the_name contains theQuery then
-						activate mysession
+						log "activating session"
+						select mytab
 						select mysession
 	                     return
 					end if
 				end tell
+			end repeat
+			end tell
 			end repeat
 		end tell
 	end repeat
