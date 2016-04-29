@@ -88,6 +88,7 @@ tell application "iTerm"
 					log the_name
 					if the_name contains theQuery then
 						log "activating session"
+						select myterm 
 						select mytab
 						select mysession
 	                     return
